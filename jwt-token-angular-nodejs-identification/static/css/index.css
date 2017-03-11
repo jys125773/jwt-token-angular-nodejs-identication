@@ -1,0 +1,31 @@
+.regist-form .alert{
+    padding: 5px;
+}
+.logout-btn{
+    margin-bottom: -28px;
+}
+.avator img{
+    width: 18px;
+    margin-right: 10px;
+}
+.avator span{
+    color: #00b3ee;
+}
+.cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width:500px;
+    height:350px;
+}
+.croper{
+    position: absolute;
+    left:30%;
+}
+.cropDetail{
+    position: absolute;
+    left:-60%;
+    top:20%;
+}
+.cropArea{
+    margin-top: 10px;
+}

@@ -1,0 +1,42 @@
+{
+  "name": "angular-async-loader",
+  "version": "1.0.1",
+  "homepage": "https://github.com/kristianbenoit/angular-async-loader",
+  "authors": [
+    "Kristian Benoit <kristian.benoit@gmail.com>"
+  ],
+  "description": "Load angular modules and their dependencies asynchronously",
+  "main": "dist/angular-async-loader.js",
+  "moduleType": [
+    "globals",
+    "angular",
+    "angularjs"
+  ],
+  "keywords": [
+    "angular",
+    "async",
+    "asynchronous",
+    "load",
+    "loading",
+    "runtime",
+    "injection",
+    "directive-injection",
+    "service-injection",
+    "provier-injection",
+    "factory-injection",
+    "value-injection",
+    "constant-injection",
+    "controller-injection",
+    "getscript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "devDependencies": {
+    "angular": "~1.3.2"
+  }
+}

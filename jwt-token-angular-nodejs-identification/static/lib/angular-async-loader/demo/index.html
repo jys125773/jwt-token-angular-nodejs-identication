@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>angular-loader example</title>
+    <!-- Change this to a local angular to test offline -->
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../dist/angular-async-loader.js"></script>
+    <script>
+      angular.module("app", ["angular-async-loader"])
+      .config(function($ngLoadProvider) {
+        $ngLoadProvider.addModuleDep(["google-places"])
+        .defineDep("autocompleteService", ['http://maps.googleapis.com/maps/api/js?libraries=places', 'angular-google-places.js'])
+        .defineDep("placesService", ['http://maps.googleapis.com/maps/api/js?libraries=places', 'angular-google-places.js']);
+      })
+
+      .controller("ctrl", function($scope, $ngLoad) {
+        var autocompleteService = null;
+        $scope.predictions=[];
+        $scope.loaded = false;
+
+        $ngLoad(["autocompleteService", "placesService"]).then(function(gp){
+          $scope.loaded = true;
+
+          $scope.autocomplete = function() {
+            gp.autocompleteService.getPlacePredictions({input: $scope.search}).then(function(res) {
+              $scope.predictions = res;
+              return gp.placesService.getDetails({placeId: res[0].place_id});
+            }).then(function (place) {
+              $scope.details = place;
+            });
+          }
+        });
+
+      });
+    </script>
+  </head>
+  <body ng-app="app" ng-controller="ctrl">
+    <h1>{{loaded ? 'Type your address' : 'loading'}}</h1>
+    <input type="text" ng-model="search" ng-change="autocomplete()" ng-disabled="!loaded"></input>
+    <h1>Results</h1>
+    <div ng-repeat="p in predictions">
+      {{p.description}}
+    </div>
+    <div ng-if="details">
+      <h1>Detail of the first match</h1>
+      {{details.name}}
+    </div>
+  </body>
+</html>

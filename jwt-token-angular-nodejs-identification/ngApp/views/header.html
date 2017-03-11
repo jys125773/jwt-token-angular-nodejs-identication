@@ -1,0 +1,21 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">JWT-TOKEN</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ng-if="auth" ui-sref="app.dynamic" ui-sref-active="active"><a>最新动态</a></li>
+                <li ng-if="auth" ui-sref="app.profile" ui-sref-active="active"><a>个人信息</a></li>
+                <li ng-if="auth" ui-sref="app.crop" ui-sref-active="active"><a>设置头像</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-if="!auth" ui-sref="app.login" ui-sref-active="active"><a>登录</a></li>
+                <li ng-if="!auth" ui-sref="app.regist" ui-sref-active="active"><a>注册</a></li>
+                <li ng-if="auth"><a class="avator"><img class="img-circle" ng-src="/static/avatars/default.jpg"><span ng-bind="auth.email"></span></a></li>
+                <li ng-if="auth"><button class="btn btn-danger logout-btn" ng-click="logout()">退出登录</button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+

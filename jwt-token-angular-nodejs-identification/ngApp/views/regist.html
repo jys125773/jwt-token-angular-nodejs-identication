@@ -1,0 +1,30 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <p class="lead">已有账号？去<a ui-sref="app.login">登录</a></p>
+            <form class="regist-form" name="registForm">
+                <div class="form-group">
+                    <label class="col-sm-3">邮箱</label>
+                    <span ng-show="registForm.registEmail.$dirty && registForm.registEmail.$error.required" class="alert alert-danger">邮箱不能为空！</span>
+                    <span ng-show="registForm.registEmail.$dirty && registForm.registEmail.$error.email" class="alert alert-danger">邮箱格式错误！</span>
+                    <span ng-show="isEmailRegisted" class="alert alert-danger">此邮箱已经注册！</span>
+                    <input ng-blur="validateRegisted()" ng-focus="isEmailRegisted=false" required ng-model="user.email" name="registEmail" type="email" class="form-control" placeholder="email"/>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">密码</label>
+                    <span ng-show="registForm.registPsw.$dirty && registForm.registPsw.$error.required" class="alert alert-danger">密码不能为空！</span>
+                    <span ng-show="registForm.registPsw.$dirty && registForm.registPsw.$error.pattern" class="alert alert-danger">密码必须为2-6位的数字英文字母！</span>
+                    <input ng-pattern="/^[0-9A-Za-z]{2,6}$/" required  ng-model="user.password" name = "registPsw" type="password" class="form-control" placeholder="2-6位的数字英文字母"/>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">确认密码</label>
+                    <span ng-show="registForm.registPsw1.$dirty  && user.password!=password1" class="alert alert-danger">两次密码不一致！</span>
+                    <input ng-disabled="registForm.registPsw.$error.required || registForm.registPsw.$error.pattern" ng-model="password1" required name="registPsw1" type="password" class="form-control" placeholder="确认输入的密码"/>
+                </div>
+                <button ng-disabled="registForm.$pristine" ng-click="reset(registForm)" type="submit" class="btn btn-danger">重置</button>
+                <button ng-disabled="registForm.$invalid || user.password!=password1 || isEmailRegisted" ng-click="regist()" type="submit" class="btn btn-primary">注册</button>
+            </form>
+        </div>
+    </div>
+</div>

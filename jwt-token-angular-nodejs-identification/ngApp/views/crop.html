@@ -1,0 +1,18 @@
+<div class="croper">
+    <form name="cropForm">
+        <button ng-click="progress=0" class="btn btn-primary" type="file" ngf-select ng-model="picFile" accept="image/*">请选择图片裁剪</button>
+    <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+        <img-crop image="picFile  | ngfDataUrl" area-type="square" change-on-fly="true" result-image="croppedDataUrl" ng-init="croppedDataUrl=''"></img-crop>
+</div>
+        <button style="margin-top: 10px" class="btn btn-danger pull-right" ng-click="upload(croppedDataUrl, picFile.name)">裁剪图片作为头像</button>
+<div class="cropDetail">
+    <div>
+        <img ng-src="{{croppedDataUrl}}"/>
+    </div>
+    <span class="progress" ng-show="progress >= 0">
+        <div class="progress-bar-success" style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+    </span>
+    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+</div>
+</form>
+</div>

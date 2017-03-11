@@ -1,0 +1,25 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <p class="lead">没有注册？去<a ui-sref="app.regist">注册</a></p>
+            <form class="regist-form" name="loginForm">
+                <div class="form-group">
+                    <label class="col-sm-3">邮箱</label>
+                    <span ng-show="loginForm.loginEmail.$dirty && loginForm.loginEmail.$error.required" class="alert alert-danger">邮箱不能为空</span>
+                    <span ng-show="loginForm.loginEmail.$dirty && loginForm.loginEmail.$error.email" class="alert alert-danger">邮箱格式错误</span>
+                    <input ng-model="user.email" required name="loginEmail" type="email" class="form-control" placeholder="email"/>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">密码</label>
+                    <span ng-show="loginForm.loginPsw.$dirty && loginForm.loginPsw.$error.required" class="alert alert-danger">密码不能为空！</span>
+                    <span ng-show="loginForm.loginPsw.$dirty && loginForm.loginPsw.$error.pattern" class="alert alert-danger">密码必须为2-6位的数字英文字母！</span>
+                    <input ng-pattern="/^[0-9A-Za-z]{2,6}$/" required ng-model="user.password" name="loginPsw" type="password" class="form-control" placeholder="2-10位的数字英文字母"/>
+                </div>
+
+                <button ng-click="login()" ng-disabled="loginForm.$invalid" type="submit" class="btn btn-primary">登录</button>
+            </form>
+        </div>
+    </div>
+</div>
+<footer-nav></footer-nav>
